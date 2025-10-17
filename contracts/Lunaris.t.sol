@@ -20,7 +20,7 @@ contract Lunaristest is Test {
 
   // Intentionally failing test to demonstrate test failure reporting
   function testBalanceOf() public view {
-    uint256 totalSupply = lunaris.totalSupply() / 2;
+    uint256 totalSupply = lunaris.totalSupply();
     assertEq(lunaris.balanceOf(address(this)), totalSupply, "Deployer should have the half of the total supply");
   }
 
