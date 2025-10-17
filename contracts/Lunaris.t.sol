@@ -20,7 +20,22 @@ contract Lunaristest is Test {
 
   // Intentionally failing test to demonstrate test failure reporting
   function testBalanceOf() public view {
-    uint256 totalSupply = lunaris.totalSupply();
+    uint256 totalSupply = lunaris.totalSupply() / 2;
     assertEq(lunaris.balanceOf(address(this)), totalSupply, "Deployer should have the half of the total supply");
+  }
+
+  function testTransfer() public {
+    address reciever = address(0x123);
+    uint256 amount = 1000 * uint256(lunaris.decimals());
+
+    uint256 initialSenderBalance = lunaris.balanceOf(address(this));
+    uint256 initialRecieverBalance = lunaris.balanceOf(reciever);
+
+    bool success = lunaris.transfer(reciever, amount);
+    assertTrue(success, "Transfer should succeed");
+    assertEq(lunaris.balanceOf(address(this)), initialSenderBalance - amount, "Sender balance should decrease by amount");
+    assertEq(lunaris.balanceOf(reciever), initialRecieverBalance + amount, "Reciever balance should increase by amount");
+
+
   }
 }

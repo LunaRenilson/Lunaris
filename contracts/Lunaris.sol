@@ -3,6 +3,7 @@ pragma solidity ^0.8.28;
 
 contract Lunaris {
     mapping(address => uint256) private _balances;
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
     constructor() {
         _balances[msg.sender] = totalSupply() / 2;
@@ -28,4 +29,11 @@ contract Lunaris {
         return _balances[_owner];
     }
 
+    function transfer(address _to, uint256 _value) public returns (bool) {
+        require(balanceOf(msg.sender) >= _value, "Insufficient balance");
+        _balances[_to] += _value;
+        _balances[msg.sender] -= _value;
+        emit Transfer(msg.sender, _to, _value);
+        return true;
+    }
 }
