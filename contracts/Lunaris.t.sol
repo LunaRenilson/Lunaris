@@ -35,7 +35,5 @@ contract Lunaristest is Test {
     assertTrue(success, "Transfer should succeed");
     assertEq(lunaris.balanceOf(address(this)), initialSenderBalance - amount, "Sender balance should decrease by amount");
     assertEq(lunaris.balanceOf(reciever), initialRecieverBalance + amount, "Reciever balance should increase by amount");
-
-
   }
 }
