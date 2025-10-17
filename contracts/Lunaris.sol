@@ -2,20 +2,30 @@
 pragma solidity ^0.8.28;
 
 contract Lunaris {
+    mapping(address => uint256) private _balances;
 
-  function name() public pure returns (string memory) {
-    return "Lunaris";
-  }
+    constructor() {
+        _balances[msg.sender] = totalSupply() / 2;
+    }
 
-  function symbol() public pure returns (string memory) {
-    return "LNR";
-  }
+    function name() public pure returns (string memory) {
+        return "Lunaris";
+    }
 
-  function decimals() public pure returns (uint8) {
-    return 18;
-  }
+    function symbol() public pure returns (string memory) {
+        return "LNR";
+    }
 
-  function totalSupply() public pure returns (uint256) {
-    return 1000000 * 10 ** uint256(decimals());
-  }
+    function decimals() public pure returns (uint8) {
+        return 18;
+    }
+
+    function totalSupply() public pure returns (uint256) {
+        return 1000000 * 10 ** uint256(decimals());
+    }
+
+    function balanceOf(address _owner) public view returns (uint256) {
+        return _balances[_owner];
+    }
+
 }

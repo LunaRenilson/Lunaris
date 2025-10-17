@@ -17,4 +17,10 @@ contract Lunaristest is Test {
   function testName() public view {
     assertEq(lunaris.name(), "Lunaris");
   }
+
+  // Intentionally failing test to demonstrate test failure reporting
+  function testBalanceOf() public view {
+    uint256 totalSupply = lunaris.totalSupply();
+    assertEq(lunaris.balanceOf(address(this)), totalSupply, "Deployer should have the half of the total supply");
+  }
 }
