@@ -63,7 +63,15 @@ npx hardhat test mocha
 The Solidity test files are written with the extention according to the model `file.t.sol`, and the hardhat executes every of them which it can find, based on the command you're using to execute the tests.
 
 ### Unit Tests
-The solidity based tests uses mainly the `require(LogicalTest, "expected result")` model, which consists on execute the functionalities and check out if the results are correct. To execute the tests, the following CLI must be executed: `npx hardhat test`
+The solidity based tests uses mainly the following functions 
+```shell
+require(LogicalTest, "expected result")
+``` 
+or 
+```shell 
+assertEq(returnedValue, expectedValue, "message")
+``` 
+which consists on execute the functionalities and check out if the results are correct. To execute the tests, the following CLI must be executed: `npx hardhat test solidity`
 
 ### Covarage Tests
 The covarage tests, similarly to TS tests covarage, can be made executing the command line `npx hardhat test solidity --coverage`, in parallel with `npx hardhat test --coverage` to TS tests covarage
